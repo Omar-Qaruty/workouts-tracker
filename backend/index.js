@@ -1,3 +1,4 @@
+const { PrismaClient } = require('@prisma/client')
 const express = require('express')
 const cookieSession = require('cookie-session');
 require('dotenv').config()
@@ -5,6 +6,7 @@ require('dotenv').config()
 const morgan = require('morgan')
 
 
+const prisma = new PrismaClient()
 const app = express()
 const port = 8080
 
@@ -20,8 +22,19 @@ app.use(cookieSession({
 const users = [
   { id: 1, name: 'John Doe', email: 'john@gmail.com', password: '123456'},
   { id: 2, name: 'Jane Doe', email: 'jane@gmial.com', password: '123456'}
-]
+];
 
+const requeireAuth = (req, res, next) => {
+  if (req.session.userId) {
+    return next();
+  }
+  res.status(401).send('Unauthorized');
+}
+
+
+app.get('/restricted', requeireAuth, (req, res) => {
+  res.send('Welcome to the restricted area');
+})
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
@@ -38,9 +51,22 @@ app.post('/login', (req, res) => {
   })
 })
 
-app.get('/logout', (req, res) => {
+app.post('/logout', (req, res) => {
   req.session = null;
   res.send({});
+})
+
+app.post('/', async (req, res) => {
+  const { username, email, password } = req.body;
+  const user = await prisma.user.create({
+    data: {
+      username,
+      email,
+      password
+    }
+  })
+  res.json(user);
+
 })
 
 app.listen(port, () => {
