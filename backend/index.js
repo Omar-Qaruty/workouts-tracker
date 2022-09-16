@@ -1,12 +1,11 @@
-const { PrismaClient } = require('@prisma/client')
 const express = require('express')
 const cookieSession = require('cookie-session');
 require('dotenv').config()
-
 const morgan = require('morgan')
+const { prisma } = require('./prisma/client.js')
+const authController = require('./controllers/auth/')
 
 
-const prisma = new PrismaClient()
 const app = express()
 const port = 8080
 
@@ -68,6 +67,8 @@ app.post('/', async (req, res) => {
   res.json(user);
 
 })
+
+app.use('/auth', authController)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
