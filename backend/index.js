@@ -4,6 +4,7 @@ require('dotenv').config()
 const morgan = require('morgan')
 const { prisma } = require('./prisma/client.js')
 const authController = require('./controllers/auth/')
+const authGuard = require('./guards/auth')
 
 
 const app = express()
@@ -55,17 +56,8 @@ app.post('/logout', (req, res) => {
   res.send({});
 })
 
-app.post('/', async (req, res) => {
-  const { username, email, password } = req.body;
-  const user = await prisma.user.create({
-    data: {
-      username,
-      email,
-      password
-    }
-  })
-  res.json(user);
-
+app.get('/', authGuard, async (req, res) => {
+  res.send('Hello World!')
 })
 
 app.use('/auth', authController)
