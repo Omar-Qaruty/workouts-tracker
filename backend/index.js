@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const { prisma } = require('./prisma/client.js')
 const authController = require('./controllers/auth/')
 const authGuard = require('./guards/auth')
+const currentUser = require('./middleware')
 
 
 const app = express()
@@ -18,6 +19,8 @@ app.use(cookieSession({
   keys: [process.env.SESSION_KEY],
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
+
+app.use(currentUser);
 
 const users = [
   { id: 1, name: 'John Doe', email: 'john@gmail.com', password: '123456'},

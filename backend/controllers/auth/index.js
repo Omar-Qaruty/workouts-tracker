@@ -66,5 +66,12 @@ router.post('/logout', (req, res) => {
   res.send('Logged out');
 })
 
+router.get('/me', async (req, res) => {
+  if (!req.session.userId) return res.status(401).send('You are not logged in');
+  return res.send({
+    ...req.user,
+    password: undefined
+  });
+})
 
 module.exports = router;
