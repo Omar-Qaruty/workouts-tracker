@@ -1,4 +1,30 @@
-### Hello world
-GET http://localhost:3000/
+### Home (restricted route)
+GET http://localhost:8080/
+content-Type: application/json
 
-Content-Type: application/json
+### Register
+POST http://localhost:8080/auth/register
+content-Type: application/json
+
+{
+    "username": "test",
+    "password": "test",
+    "email": "test@test.com"
+}
+
+### Login
+POST http://localhost:8080/auth/login
+content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "test"
+}
+
+### Logout
+POST http://localhost:8080/auth/logout
+
+### Get User
+GET http://localhost:8080/auth/me
+content-Type: application/json
+
