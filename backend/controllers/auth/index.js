@@ -25,7 +25,6 @@ router.post("/register", async (req, res) => {
       username,
       email,
       password: hashedAndSaltedPassword,
-      tokens: hashedAndSaltedPassword,
     },
   });
 
@@ -57,6 +56,7 @@ router.post("/login", async (req, res) => {
     return res.status(400).send("Invalid email or password");
 
   req.session.userId = user.id;
+  console.log(req.session.userId);
 
   res.send({
     ...user,
@@ -127,37 +127,33 @@ router.post("/requistRestPassword", async (req, res) => {
     } catch (error) {
       res.status(201).json({ status: 401, error });
     }
-
-    // const resetPassword = async (token , password) =>{
-    //   const resetToken = await prisma.user.findUnique({
-    //     where: {
-    //       tokens,
-    //     },
-    //something....
   }
 });
 
 router.post("/resetPassword", async (req, res) => {
-  const resetPassword = async (token, password) => {
-    const { tokens } = req.body;
-    const resetToken = await prisma.user.findUnique({ tokens });
-    if (resetToken === token) {
-      const hash = await bcrypt.hash(password, Number(bcryptSalt));
+  const { token } = req.body;
+  const resetToken = await prisma.user.findUnique({
+    where: {
+      Token: {
+        emailToken: token,
+      },
+    },
+  });
+  if (resetToken === token) {
+    const hash = await bcrypt.hash(password, Number(bcryptSalt));
 
-      await prisma.user.update({
-        data: {
-          password: hash,
-        },
-        where: {
-          id,
-          email,
-        },
-      });
-      res.send(`your knew password is : ${hash}`);
-    }
-  };
+    await prisma.user.update({
+      data: {
+        password: hash,
+      },
+      where: {
+        id,
+        email,
+      },
+    });
+    res.send(`your knew password is : ${hash}`);
+  }
 });
-
 router.get("/me", async (req, res) => {
   if (!req.session.userId) return res.status(401).send("You are not logged in");
   return res.send({

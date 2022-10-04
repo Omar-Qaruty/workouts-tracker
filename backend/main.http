@@ -17,8 +17,8 @@ POST http://localhost:8080/auth/login
 content-Type: application/json
 
 {
-    "email": "test@test.com",
-    "password": "test"
+    "email": "ward.dev@gmail.com",
+    "password": "123456"
 }
 
 ### Logout
@@ -26,5 +26,9 @@ POST http://localhost:8080/auth/logout
 
 ### Get User
 GET http://localhost:8080/auth/me
+content-Type: application/json
+
+### Get Workouts
+GET http://localhost:8080/workouts/
 content-Type: application/json
 

@@ -1,0 +1,10 @@
+-- CreateTable
+CREATE TABLE "workout" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "valid" BOOLEAN NOT NULL DEFAULT true,
+    "expiration" DATETIME,
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "workout_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
