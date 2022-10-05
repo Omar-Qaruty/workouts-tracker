@@ -16,16 +16,15 @@ model User {
   email     String   @unique
   password  String
   tokens    Token[]
-  workouts  workout[]
+  workouts  Workout[]
 }
 
-model workout {
+model Workout {
   id Int @id @default(autoincrement())
   name String
   type String?
   description String?
   duration Float?
-  date DateTime @default(now())
   
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt

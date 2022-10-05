@@ -7,9 +7,9 @@ POST http://localhost:8080/auth/register
 content-Type: application/json
 
 {
-    "username": "test",
-    "password": "test",
-    "email": "test@test.com"
+    "username": "ward",
+    "password": "String",
+    "email": "ward.test.com"
 }
 
 ### Login
@@ -17,8 +17,8 @@ POST http://localhost:8080/auth/login
 content-Type: application/json
 
 {
-    "email": "ward.dev@gmail.com",
-    "password": "123456"
+    "email": "ward.test.com",
+    "password": "String"
 }
 
 ### Logout
@@ -32,3 +32,22 @@ content-Type: application/json
 GET http://localhost:8080/workouts/
 content-Type: application/json
 
+### POST Workouts
+POST http://localhost:8080/workouts/
+content-Type: application/json
+
+{
+    "name": "fuck",
+    "type": "Cardio",
+    "description":"lorem",
+    "duration":12.12
+}
+
+### Get Workout
+GET http://localhost:8080/workouts/6
+content-Type: application/json
+
+
+### Get LastSevenDaysWorkouts
+GET http://localhost:8080/workouts/lastSevenDaysWorkouts
+content-Type: application/json

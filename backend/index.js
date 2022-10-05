@@ -23,10 +23,6 @@ app.use(
 
 app.use(currentUser);
 
-app.get("/", authGuard, async (req, res) => {
-  res.send("Hello World!");
-});
-
 app.use("/auth", authController);
 
 app.use("/workouts", authGuard, workoutsController);

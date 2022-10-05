@@ -11,6 +11,22 @@ router.get("/", async (req, res) => {
   res.json(workouts);
 });
 
+router.get("/lastSevenDaysWorkouts", async (req, res) => {
+  let lastSevenDays = Date.now() - 168 * 60 * 60 * 1000;
+  lastSevenDays = new Date(lastSevenDays).toISOString();
+
+  const lastSevenDaysWorkouts = await prisma.workout.findMany({
+    where: {
+      userId: req.user.id,
+      createdAt: {
+        gte: lastSevenDays,
+      },
+    },
+  });
+
+  res.json(lastSevenDaysWorkouts);
+});
+
 router.post("/", async (req, res) => {
   const { name, type, description, duration, date } = req.body;
 

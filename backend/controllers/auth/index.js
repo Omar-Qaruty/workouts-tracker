@@ -56,7 +56,6 @@ router.post("/login", async (req, res) => {
     return res.status(400).send("Invalid email or password");
 
   req.session.userId = user.id;
-  console.log(req.session.userId);
 
   res.send({
     ...user,
