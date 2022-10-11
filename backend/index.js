@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const authController = require("./controllers/auth/");
 const authGuard = require("./guards/auth");
 const workoutsController = require("./controllers/workouts");
+const passwordResetController = require("./controllers/passwordReset");
 const currentUser = require("./middleware");
 
 const app = express();
@@ -24,6 +25,8 @@ app.use(
 app.use(currentUser);
 
 app.use("/auth", authController);
+
+app.use("/passwordReset", passwordResetController);
 
 app.use("/workouts", authGuard, workoutsController);
 

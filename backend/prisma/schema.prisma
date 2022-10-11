@@ -15,7 +15,7 @@ model User {
   username      String
   email     String   @unique
   password  String
-  tokens    Token[]
+  token    Token?
   workouts  Workout[]
 }
 
@@ -35,14 +35,9 @@ model Workout {
 }
 
 model Token {
-  id         Int       @id @default(autoincrement())
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
   emailToken String?   @unique // Only used for short lived email tokens
-  valid      Boolean   @default(true)
-  expiration DateTime?
- 
+  createdAt  DateTime  @default(now())
   // Relation fields
   user   User @relation(fields: [userId], references: [id])
-  userId Int
+  userId Int @unique
 }

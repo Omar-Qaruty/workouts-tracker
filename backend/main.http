@@ -9,7 +9,7 @@ content-Type: application/json
 {
     "username": "ward",
     "password": "String",
-    "email": "ward.test.com"
+    "email": "ward.test7.com"
 }
 
 ### Login
@@ -17,8 +17,8 @@ POST http://localhost:8080/auth/login
 content-Type: application/json
 
 {
-    "email": "ward.test.com",
-    "password": "String"
+    "email": "ward.test7.com",
+    "password": "ward"
 }
 
 ### Logout
@@ -44,10 +44,29 @@ content-Type: application/json
 }
 
 ### Get Workout
-GET http://localhost:8080/workouts/6
+GET http://localhost:8080/workouts/33
 content-Type: application/json
 
 
 ### Get LastSevenDaysWorkouts
 GET http://localhost:8080/workouts/lastSevenDaysWorkouts
 content-Type: application/json
+
+
+### Reset Password
+POST http://localhost:8080/passwordReset    
+content-Type: application/json
+
+{
+    "email": "ward.test7.com"
+    
+}
+### Reset Password
+
+POST http://localhost:8080/passwordReset/8/bbd8f97ebccc707105fd63a5d56330aa6076270d79c6c73a162af7ebb371cbf1
+content-Type: application/json
+
+{
+    "password": "ward"
+    
+}
