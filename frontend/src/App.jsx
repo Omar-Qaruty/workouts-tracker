@@ -1,34 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import { useEffect } from "react";
+import Home from "./components/Home";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const checkUser = async (canceler) => {
+    try {
+      const res = await fetch("http://localhost:8080/auth/me", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        signal: canceler.signal,
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    const canceler = new AbortController();
+    checkUser(canceler);
 
+    return () => canceler.abort();
+  }, []);
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="sign-in" element={<SignIn />} />
+        <Route path="sign-up" element={<SignUp />} />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;
