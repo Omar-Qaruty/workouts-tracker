@@ -68,93 +68,9 @@ router.post("/logout", (req, res) => {
   res.send("Logged out");
 });
 
-router.post("/requistRestPassword", async (req, res) => {
-  const { email } = req.body;
-  const userExist = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-  });
-
-  if (userExist) {
-    let emailToken = randomBytes(8).toString("hex");
-    let username = "ward";
-    let password = "1234567";
-
-    const createdToken = await prisma.token.create({
-      data: {
-        emailToken,
-        user: {
-          connectOrCreate: {
-            create: {
-              email,
-              username,
-              password,
-            },
-            where: {
-              email,
-            },
-          },
-        },
-      },
-    });
-
-    try {
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: process.env.SENDINGEMAIL,
-          pass: "dgueizsfzqnvgifg",
-        },
-      });
-
-      const mailOptions = {
-        from: process.env.SENDINGEMAIL,
-        to: "roze.hope@yahoo.com",
-        subject: "trying to reset password",
-        html: `<h1> please verfiy with this key : ${emailToken}</h1>`,
-      };
-
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log("error: ", error);
-        } else {
-          console.log("email sent successfully" + info.response);
-          res.status(201).json({ status: 201, info });
-        }
-      });
-    } catch (error) {
-      res.status(201).json({ status: 401, error });
-    }
-  }
-});
-
-router.post("/resetPassword", async (req, res) => {
-  const { token } = req.body;
-  const resetToken = await prisma.user.findUnique({
-    where: {
-      Token: {
-        emailToken: token,
-      },
-    },
-  });
-  if (resetToken === token) {
-    const hash = await bcrypt.hash(password, Number(bcryptSalt));
-
-    await prisma.user.update({
-      data: {
-        password: hash,
-      },
-      where: {
-        id,
-        email,
-      },
-    });
-    res.send(`your knew password is : ${hash}`);
-  }
-});
 router.get("/me", async (req, res) => {
-  if (!req.session.userId) return res.status(401).send("You are not logged in");
+  if (!req.session.userId)
+    return res.status(401).json({ messege: "You are not logged in" });
   return res.send({
     ...req.user,
     password: undefined,

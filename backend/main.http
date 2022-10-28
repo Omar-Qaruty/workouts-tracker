@@ -37,7 +37,7 @@ POST http://localhost:8080/workouts/
 content-Type: application/json
 
 {
-    "name": "fuck",
+    "name": "fuck today",
     "type": "Cardio",
     "description":"lorem",
     "duration":12.12

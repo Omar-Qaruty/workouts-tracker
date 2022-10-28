@@ -7,8 +7,15 @@ const authGuard = require("./guards/auth");
 const workoutsController = require("./controllers/workouts");
 const passwordResetController = require("./controllers/passwordReset");
 const currentUser = require("./middleware");
+const cors = require("cors");
 
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 const port = 8080;
 
 app.use(morgan("[:status - :method] :url :response-time"));
