@@ -31,14 +31,15 @@ To install the frontend from the root of the project run
 - [x] Register
 - [x] Login
 - [x] Logout
-- [ ] Reset password
+- [x] Reset password
 
 ### Build Workout system that users can:
-- [ ] create Workout
-- [ ] edit Workout
-- [ ] delete Workout
-- [ ] view Workout Details
-- [ ] view Workout List
+- [x] create Workout
+- [x] edit Workout
+- [x] delete Workout
+- [x] view Workout Details
+- [x] view Workout List
+- [ ] view Workout List pagination
 
 ### Build Profile functionalities that users can:
 - [ ] view Profile
@@ -52,8 +53,8 @@ To install the frontend from the root of the project run
 ### Build statistics system:
 On the home page show:
 - [ ] Total number of workouts
-- [ ] Total number of workouts in the last 7 days
-- [ ] Lat time that the user worked out
+- [x] Total number of workouts in the last 7 days
+- [ ] Last time that the user worked out
 
 ## Dev Wishlist
 - [ ] Add tests
