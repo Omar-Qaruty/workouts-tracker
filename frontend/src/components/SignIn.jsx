@@ -48,7 +48,6 @@ export default function SignIn() {
         <div>
           <button>Sign In </button>
         </div>
-        <div></div>
       </form>
     </div>
   );

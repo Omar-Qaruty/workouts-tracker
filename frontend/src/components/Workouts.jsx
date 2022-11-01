@@ -1,4 +1,5 @@
 import { useState } from "react";
+import WorkoutCard from "./styles/WorkoutCard/WorkoutCard";
 
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([]);
@@ -56,7 +57,19 @@ export default function Workouts() {
             return (
               <div key={id}>
                 <li>
-                  {name} {type} {description} {duration} {createdAt}
+                  {/* {name} {type} {description} {duration} {createdAt} */}
+                  <div>
+                    {
+                      <WorkoutCard
+                        name={name}
+                        id={id}
+                        type={type}
+                        description={description}
+                        duration={duration}
+                        createdAt={createdAt}
+                      />
+                    }
+                  </div>
                 </li>
               </div>
             );
@@ -76,7 +89,16 @@ export default function Workouts() {
             return (
               <div key={id}>
                 <li>
-                  {name} {type} {description} {duration} {createdAt}
+                  {/* {name} {type} {description} {duration} {createdAt} */}
+
+                  <WorkoutCard
+                    name={name}
+                    id={id}
+                    type={type}
+                    description={description}
+                    duration={duration}
+                    createdAt={createdAt}
+                  />
                 </li>
               </div>
             );
