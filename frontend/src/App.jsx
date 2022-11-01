@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import { useEffect } from "react";
 import Home from "./components/Home";
 import WorkoutCard from "./components/styles/WorkoutCard/WorkoutCard";
+import EditWorkout from "./components/EditWorkout";
 
 function App() {
   const checkUser = async (canceler) => {
@@ -33,7 +34,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="card" element={<WorkoutCard />} />
+        <Route path="edit-workout" element={<EditWorkout />} />
       </Routes>
     </>
   );

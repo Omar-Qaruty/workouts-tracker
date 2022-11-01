@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./WorkoutCardStyles.scss";
 export default function WorkoutCard({
   name,
@@ -28,6 +29,7 @@ export default function WorkoutCard({
           </div>
         </div>
       </div>
+      <Link to="/edit-workout">edit workout</Link>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import WorkoutCard from "./styles/WorkoutCard/WorkoutCard";
+import "./Workouts.scss";
 
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([]);
   const [lastSevenDaysWorkouts, setLastSevenDaysWorkouts] = useState([]);
 
-  const getWorkouts = async (event) => {
+  const getWorkouts = async () => {
     try {
       const res = await fetch("http://localhost:8080/workouts/", {
         method: "GET",
@@ -41,7 +42,6 @@ export default function Workouts() {
 
   return (
     <div>
-      <h3> Workouts</h3>
       <div>
         <div>
           {workouts.map((workout) => {
@@ -57,7 +57,6 @@ export default function Workouts() {
             return (
               <div key={id}>
                 <li>
-                  {/* {name} {type} {description} {duration} {createdAt} */}
                   <div>
                     {
                       <WorkoutCard
@@ -89,8 +88,6 @@ export default function Workouts() {
             return (
               <div key={id}>
                 <li>
-                  {/* {name} {type} {description} {duration} {createdAt} */}
-
                   <WorkoutCard
                     name={name}
                     id={id}
@@ -105,10 +102,16 @@ export default function Workouts() {
           })}
         </div>
       </div>
-      <button onClick={getWorkouts}>Get Workouts</button>
-      <button onClick={getLastSevenDaysWorkouts}>
-        Get last 7 days Workouts
-      </button>
+      <div>
+        <button className="button" onClick={getWorkouts}>
+          Get Workouts
+        </button>
+      </div>
+      <div>
+        <button className="button" onClick={getLastSevenDaysWorkouts}>
+          Get last 7 days Workouts
+        </button>
+      </div>
     </div>
   );
 }

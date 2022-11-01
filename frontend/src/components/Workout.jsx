@@ -1,4 +1,7 @@
 import { useState } from "react";
+import "./Workouts.scss";
+import "./Workout.scss";
+import WorkoutCard from "./styles/WorkoutCard/WorkoutCard";
 
 export default function Workout() {
   const [workoutId, setWorkoutId] = useState("");
@@ -26,12 +29,36 @@ export default function Workout() {
   return (
     <div>
       <div>
-        {name} {type} {description} {createdAt} {duration}
+        <button className="button" onClick={getWorkout}>
+          Get Workout
+        </button>
       </div>
-      <label>
-        workout : <input type="text" onChange={handelChange} />
-      </label>
-      <button onClick={getWorkout}>workout</button>
+      <div>
+        {
+          <WorkoutCard
+            name={name}
+            id={id}
+            type={type}
+            description={description}
+            duration={duration}
+            createdAt={createdAt}
+          />
+        }
+      </div>
+      <div className="form__group field">
+        <input
+          type="input"
+          className="form__field"
+          placeholder="Workout id"
+          name="Workout id"
+          id="Workout id"
+          required
+          onChange={handelChange}
+        />
+        <label for="Workout id" className="form__label">
+          Workout id
+        </label>
+      </div>
     </div>
   );
 }
