@@ -1,11 +1,22 @@
+import { Link } from "react-router-dom";
 import Workout from "./Workout";
-import Workouts from "./Workouts";
 
 export default function Home() {
   return (
     <>
-      <Workouts />
-      <Workout />
+      <div>
+        <button className="button">
+          <Link to="workouts">Get Workouts</Link>
+        </button>
+      </div>
+      <div>
+        <button className="button">
+          <Link to="last-seven-days-workouts">Get last 7 days Workouts</Link>
+        </button>
+      </div>
+      <div>
+        <Workout />
+      </div>
     </>
   );
 }

@@ -30,23 +30,27 @@ export default function SignIn() {
 
   return (
     <div>
+      <h5>Sign in</h5>
       <form onSubmit={handleLogin}>
-        <h2>This is Sign in</h2>
-        <div>
-          <label htmlFor="">
-            Email
-            <input type="text" onChange={onChangeEmail} />
-          </label>
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            id="name"
+            onChange={onChangeEmail}
+          />
+          <label class="form__label">email</label>
         </div>
-        <div>
-          <label htmlFor="">
-            Password
-            <input type="text" onChange={onChangePassword} />
-          </label>
-        </div>
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            id="name"
+            onChange={onChangePassword}
+          />
+          <label class="form__label">password</label>
 
-        <div>
-          <button>Sign In </button>
+          <button className="button">Sign In </button>
         </div>
       </form>
     </div>

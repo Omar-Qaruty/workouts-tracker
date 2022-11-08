@@ -27,28 +27,35 @@ export default function SignUp() {
   };
   return (
     <div>
+      <h5>Sign in</h5>
       <form onSubmit={handleRegister}>
-        <h2>This is SignUp</h2>
-        <div>
-          <label htmlFor="">
-            User name:
-            <input type="text" onChange={onChangeUsername} />
-          </label>
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            id="name"
+            onChange={onChangeUsername}
+          />
+          <label class="form__label">name</label>
         </div>
-        <div>
-          <label htmlFor="">
-            Email
-            <input type="text" onChange={onChangeEmail} />
-          </label>
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            id="name"
+            onChange={onChangeEmail}
+          />
+          <label class="form__label">email</label>
         </div>
-        <div>
-          <label htmlFor="">
-            Password:
-            <input type="text" onChange={onChangePassword} />
-          </label>
-        </div>
-        <div>
-          <button>Sign Up</button>
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            id="name"
+            onChange={onChangePassword}
+          />
+          <label class="form__label">password</label>
+          <button className="button">Sign up</button>
         </div>
       </form>
     </div>

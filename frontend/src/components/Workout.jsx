@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./Workouts.scss";
 import "./Workout.scss";
 import WorkoutCard from "./styles/WorkoutCard/WorkoutCard";
@@ -6,6 +7,7 @@ import WorkoutCard from "./styles/WorkoutCard/WorkoutCard";
 export default function Workout() {
   const [workoutId, setWorkoutId] = useState("");
   const [workout, setWorkout] = useState("");
+  const [workoutType, setWorkoutType] = useState("workout");
 
   const getWorkout = async (event) => {
     event.preventDefault();
@@ -17,6 +19,7 @@ export default function Workout() {
       });
       const data = await res.json();
       setWorkout(data);
+      setWorkoutType("workout");
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -29,12 +32,7 @@ export default function Workout() {
   return (
     <div>
       <div>
-        <button className="button" onClick={getWorkout}>
-          Get Workout
-        </button>
-      </div>
-      <div>
-        {
+        {/* {workoutType === "workout" && (
           <WorkoutCard
             name={name}
             id={id}
@@ -43,7 +41,7 @@ export default function Workout() {
             duration={duration}
             createdAt={createdAt}
           />
-        }
+        )} */}
       </div>
       <div className="form__group field">
         <input
@@ -58,6 +56,9 @@ export default function Workout() {
         <label for="Workout id" className="form__label">
           Workout id
         </label>
+        <button className="button" onClick={getWorkout}>
+          Get Workout
+        </button>
       </div>
     </div>
   );

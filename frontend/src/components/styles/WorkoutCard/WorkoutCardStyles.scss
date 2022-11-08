@@ -1,16 +1,13 @@
-* {
-  box-sizing: border-box;
-}
 body {
-  display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
-  background-color: #02081e;
+  // background-color: #02081e;
   font-family: "Roboto", sans-serif;
-  color: #10182f;
+  color: #1b3ea7;
 }
 .container {
+  position: center;
   display: flex;
   width: 1040px;
   justify-content: space-evenly;
@@ -55,7 +52,7 @@ body {
   background-color: #5e76bf;
 }
 .tag-pink {
-  background-color: #cd5b9f;
+  background-color: #765267;
 }
 
 .card-body p {
@@ -77,5 +74,5 @@ body {
   margin: 0;
 }
 .user-info small {
-  color: #545d7a;
+  color: #2a2f3e;
 }

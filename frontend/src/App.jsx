@@ -4,8 +4,11 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import { useEffect } from "react";
 import Home from "./components/Home";
-import WorkoutCard from "./components/styles/WorkoutCard/WorkoutCard";
 import EditWorkout from "./components/EditWorkout";
+import Workouts from "./components/Workouts";
+import { WorkoutsContextProvider } from "./context/WorkoutsContext";
+import LastSevenDaysWorkouts from "./components/LastSevenDaysWorkouts";
+import { LastSevenDaysWorkoutsProvider } from "./context/LastSevenDaysWorkoutsContext";
 
 function App() {
   const checkUser = async (canceler) => {
@@ -35,6 +38,22 @@ function App() {
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
         <Route path="edit-workout" element={<EditWorkout />} />
+        <Route
+          path="last-seven-days-workouts"
+          element={
+            <LastSevenDaysWorkoutsProvider>
+              <LastSevenDaysWorkouts></LastSevenDaysWorkouts>
+            </LastSevenDaysWorkoutsProvider>
+          }
+        />
+        <Route
+          path="workouts"
+          element={
+            <WorkoutsContextProvider>
+              <Workouts />
+            </WorkoutsContextProvider>
+          }
+        />
       </Routes>
     </>
   );
