@@ -24,7 +24,7 @@ model Workout {
   name String
   type String?
   description String?
-  duration Float?
+  duration String?
   
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt

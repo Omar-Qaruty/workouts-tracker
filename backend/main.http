@@ -37,7 +37,7 @@ POST http://localhost:8080/workouts/
 content-Type: application/json
 
 {
-    "name": "fuck today",
+    "name": "fuck today oh yeah",
     "type": "Cardio",
     "description":"lorem",
     "duration":12.12
@@ -46,6 +46,17 @@ content-Type: application/json
 ### Get Workout
 GET http://localhost:8080/workouts/33
 content-Type: application/json
+
+
+### Edit Workout
+PUT  http://localhost:8080/workouts/1 
+content-Type: application/json
+{
+      "name": "fuck today oh yeah",
+    "type": "Cardio",
+    "description":"lorem",
+    "duration":12.12
+}
 
 
 ### Get LastSevenDaysWorkouts

@@ -64,13 +64,12 @@ router.get("/:id", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const { name, type, description, duration, date } = req.body;
+  const { name, type, description, duration } = req.body;
   let workoutId = parseInt(req.params.id);
 
   const findWorkout = await prisma.workout.findUnique({
     where: {
       id: workoutId,
-      user: req.user,
     },
   });
   if (findWorkout) {
@@ -83,7 +82,6 @@ router.put("/:id", async (req, res) => {
         type,
         description,
         duration,
-        date,
       },
     });
     res.send("workout is updated");
