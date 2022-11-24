@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./Workout.scss";
 
 export default function EditWorkout() {
@@ -6,22 +7,27 @@ export default function EditWorkout() {
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
   const [duration, setDuration] = useState("");
-  const [date, setDate] = useState("");
+
+  const location = useLocation();
+  const { from } = location.state;
 
   const handleName = (e) => setName(e.target.value);
   const handleType = (e) => setType(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
   const handleDuration = (e) => setDuration(e.target.value);
-  const handleDate = (e) => setDate(e.target.value);
 
   const updateWorkout = async (event) => {
     event.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:8080/workouts/47`, {
+      const res = await fetch(`http://localhost:8080/workouts/${from}`, {
         method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
 
-        body: JSON.stringify({ name, type, description, duration, date }),
+        body: JSON.stringify({ name, type, description, duration }),
       });
       const data = await res.json();
       console.log(data);
@@ -67,15 +73,6 @@ export default function EditWorkout() {
           onChange={handleDuration}
         />
         <label class="form__label">duration</label>
-      </div>
-      <div class="form__group field">
-        <input
-          type="input"
-          class="form__field"
-          name="date"
-          onChange={handleDate}
-        />
-        <label class="form__label">date</label>
         <button className="button" onClick={updateWorkout}>
           edit workout
         </button>

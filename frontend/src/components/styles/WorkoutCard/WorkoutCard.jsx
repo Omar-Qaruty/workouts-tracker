@@ -30,7 +30,9 @@ export default function WorkoutCard({
         </div>
         <div>
           <button className="button">
-            <Link to="/edit-workout">edit workout</Link>
+            <Link to="/edit-workout" state={{ from: id }}>
+              edit workout
+            </Link>
           </button>
         </div>
       </div>
