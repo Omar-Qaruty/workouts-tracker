@@ -9,6 +9,7 @@ import Workouts from "./components/Workouts";
 import { WorkoutsContextProvider } from "./context/WorkoutsContext";
 import LastSevenDaysWorkouts from "./components/LastSevenDaysWorkouts";
 import { LastSevenDaysWorkoutsProvider } from "./context/LastSevenDaysWorkoutsContext";
+import CreateWorkout from "./components/CreateWorkout";
 
 function App() {
   const checkUser = async (canceler) => {
@@ -38,6 +39,7 @@ function App() {
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
         <Route path="edit-workout" element={<EditWorkout />} />
+        <Route path="create-workout" element={<CreateWorkout />} />
         <Route
           path="last-seven-days-workouts"
           element={

@@ -17,6 +17,11 @@ export default function Home() {
       <div>
         <Workout />
       </div>
+      <div>
+        <button className="button">
+          <Link to="create-workout">create workout</Link>
+        </button>
+      </div>
     </>
   );
 }
