@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import DeleteWorkout from "../../DeleteWorkout";
+
 import "./WorkoutCardStyles.scss";
 export default function WorkoutCard({
   name,
@@ -34,6 +36,7 @@ export default function WorkoutCard({
               edit workout
             </Link>
           </button>
+          <DeleteWorkout id={id} />
         </div>
       </div>
     </div>
